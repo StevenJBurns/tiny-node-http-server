@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/StevenJBurns/tiny-node-http-server/issues"
   },
-  "homepage": "https://github.com/StevenJBurns/tiny-node-http-server#readme"
+  "homepage": "https://github.com/StevenJBurns/tiny-node-http-server#readme",
+  "dependencies": {
+    "chalk": "^2.4.1"
+  }
 }
