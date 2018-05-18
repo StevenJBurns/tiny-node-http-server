@@ -4,6 +4,7 @@
   "description": "Super simple node http server (without Express)",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,5 +19,6 @@
   "homepage": "https://github.com/StevenJBurns/tiny-node-http-server#readme",
   "dependencies": {
     "chalk": "^2.4.1"
-  }
+  },
+  "devDependencies": {}
 }
