@@ -9,10 +9,10 @@ const nodeServer = http.createServer(handleRequest);
 
 function handleRequest(req, res) {
   console.log(chalk.bgBlue.black(`\n Incoming ${req.method} Request -- URL: ${req.url} `));
-  // console.log(req.url);
   
   res.writeHead(200);
   res.end();
+  console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
 }
 
 nodeServer.listen(8192, () => {
