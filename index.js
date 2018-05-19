@@ -26,12 +26,32 @@ function handleRequest(req, res) {
     case "HEAD" :
       break;
     case "GET" :
+      let auth64, password, message;
+
       if (req.url == "/admin" && !headers["authorization"]) {
         res.statusCode = 401;
         res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
-      } else {
-        res.writeHead(200);
+      } else if (req.url == "/admin" && headers["authorization"]) {
+        auth64 = req.headers["authorization"].split(" ");
+
+        let buf = Buffer.from(auth64[1], 'base64');
+        let auth = buf.toString();
+
+        auth = auth.split(":");
+        password = auth[1]
+
+        if (password == process.env.BASIC_AUTH_PASSWORD) {
+          res.writeHead(200);
+          res.write("<h1>AUTHORIZED</h1>");
+          res.end();
+        } else {
+          res.statusCode = 401;
+          //res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
+          res.write("<h1 style='color: red'>BAD PASSWORD</h1>");
+          res.end();
+        };
       }
+
       break;
     case "POST" :
       break;
