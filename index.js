@@ -17,7 +17,7 @@ function handleRequest(req, res) {
   // res.writeHead(200);
   // res.write(`<html>\n<body>\n<h1>${req.method}</h1>\n</body>\n</html>`)
   // res.end();
-  console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+  // console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
 
   // console.log(headers["authorization"]);
   // console.log(req.url);
@@ -31,6 +31,7 @@ function handleRequest(req, res) {
       if (req.url == "/admin" && !headers["authorization"]) {
         res.statusCode = 401;
         res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
+        res.end();
       } else if (req.url == "/admin" && headers["authorization"]) {
         auth64 = req.headers["authorization"].split(" ");
 
@@ -41,13 +42,15 @@ function handleRequest(req, res) {
         password = auth[1]
 
         if (password == process.env.BASIC_AUTH_PASSWORD) {
+          console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
           res.writeHead(200);
-          res.write("<h1>AUTHORIZED</h1>");
+          res.write("<meta charset='utf-8'>\n<h1>AUTHORIZED</h1>");
           res.end();
         } else {
+          console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 401 `));
           res.statusCode = 401;
-          //res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
-          res.write("<h1 style='color: red'>BAD PASSWORD</h1>");
+          res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
+          res.write("<meta charset='utf-8'>\n<h1 style='color: red'>BAD PASSWORD</h1>");
           res.end();
         };
       }
