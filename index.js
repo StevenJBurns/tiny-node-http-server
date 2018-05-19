@@ -5,6 +5,8 @@ const path = require("path");
 const http = require("http");
 const chalk = require("chalk");
 
+require('dotenv').config();
+
 const nodeServer = http.createServer(handleRequest);
 
 function handleRequest(req, res) {
@@ -46,7 +48,7 @@ function handleRequest(req, res) {
   res.end();
 }
 
-nodeServer.listen(8192, () => {
+nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
-  console.log(chalk.inverse(" Server running. Listening on port 8192 "));
+  console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
 });
