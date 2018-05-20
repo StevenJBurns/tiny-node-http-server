@@ -36,9 +36,13 @@ function handleRequest(req, res) {
 
         if (password == process.env.BASIC_AUTH_PASSWORD) {
           console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
-          res.writeHead(200, {"content-type": "text/html"});
-          res.write("<meta charset='utf-8'>\n<h1>AUTHORIZED</h1>");
-          res.end();
+          ejs.renderFile(`${__dirname}/views/index.ejs`, { title: "Home"}, (err, str) => {
+            res.writeHead(200, {"content-type": "text/html"});
+            res.write(str);
+            res.end();
+          });
+          // console.log(`${__dirname}/views/index.ejs`);
+          // res.end();
         } else {
           console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 401 `));
           res.statusCode = 401;
