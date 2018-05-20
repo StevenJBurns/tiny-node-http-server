@@ -77,5 +77,5 @@ function renderHTML(filePath) {
 nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
-  cities.forEach(c => console.log(c));  
+  cities.forEach(c => console.log(c));
 });
