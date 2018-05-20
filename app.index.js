@@ -4,6 +4,7 @@ const fs = require("fs");
 const path = require("path");
 const http = require("http");
 const chalk = require("chalk");
+const ejs = require("ejs");
 
 require('dotenv').config();
 
