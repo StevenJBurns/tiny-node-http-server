@@ -6,6 +6,8 @@ const http = require("http");
 const chalk = require("chalk");
 const ejs = require("ejs");
 
+const cities = require("./app.data");
+
 require('dotenv').config();
 
 const nodeServer = http.createServer(handleRequest);
@@ -75,4 +77,5 @@ function renderHTML(filePath) {
 nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
+  cities.forEach(c => console.log(c));  
 });
