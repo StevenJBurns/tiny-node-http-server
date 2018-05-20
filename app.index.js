@@ -10,17 +10,9 @@ require('dotenv').config();
 const nodeServer = http.createServer(handleRequest);
 
 function handleRequest(req, res) {
-  let { headers, method, url } = req
+  let { headers, method, url } = req;
 
   console.log(chalk.bgBlue.black(`\n Incoming ${req.method} Request -- URL: ${req.url} `));
-  
-  // res.writeHead(200);
-  // res.write(`<html>\n<body>\n<h1>${req.method}</h1>\n</body>\n</html>`)
-  // res.end();
-  // console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
-
-  // console.log(headers["authorization"]);
-  // console.log(req.url);
 
   switch (req.method) {
     case "HEAD" :
@@ -43,7 +35,7 @@ function handleRequest(req, res) {
 
         if (password == process.env.BASIC_AUTH_PASSWORD) {
           console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
-          res.writeHead(200);
+          res.writeHead(200, {"content-type": "text/html"});
           res.write("<meta charset='utf-8'>\n<h1>AUTHORIZED</h1>");
           res.end();
         } else {
@@ -69,7 +61,11 @@ function handleRequest(req, res) {
       break;
   }
   res.end();
-}
+};
+
+function renderHTML(filePath) {
+
+};
 
 nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
