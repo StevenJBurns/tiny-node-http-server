@@ -55,9 +55,26 @@ function handleRequest(req, res) {
         }
       }
       break;
-    case "/favicon.ico" :
+    case "/favicon-16x16.png" :
+      fs.readFile(`${__dirname}/public/favicon/favicon-16x16.png`, (err, favicon16) => {
+        res.writeHead(200, {"Content-Type": "img/png"});
+        res.write(favicon16);
+        res.end();
+      });
+      break;
+    case "/favicon-32x32.png" :
+      fs.readFile(`${__dirname}/public/favicon/favicon-32x32.png`, (err, favicon32) => {
+        res.writeHead(200, {"Content-Type": "img/png"});
+        res.write(favicon32);
+        res.end();
+      });
       break;
     case "/css/style.css" :
+      fs.readFile(`${__dirname}/public/css/style.css`, (err, cssFile) => {
+        res.writeHead(200, {"Content-Type": "text/css"});
+        res.write(cssFile);
+        res.end();
+      });
       break;
     default :
       console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 404 `));
