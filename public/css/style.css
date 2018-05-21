@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background: #F0F0F0;
   font-family: Futura, Nunito
 }
 
@@ -18,4 +19,16 @@ header, footer {
 
 main {
   flex: 1 0 auto;
+}
+
+.error404 {
+  background: #FF000077
+}
+
+.error401 {
+
+}
+
+.error500 {
+  background: #FFFF0077;
 }

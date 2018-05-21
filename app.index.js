@@ -15,7 +15,6 @@ const nodeServer = http.createServer(handleRequest);
 function handleRequest(req, res) {
   let { url, headers, method } = req;
 
-  console.log(url);
   console.log(chalk.bgBlue.black(`\n Incoming ${req.method} Request -- URL: ${req.url} `));
 
   switch (url) {
@@ -40,7 +39,6 @@ function handleRequest(req, res) {
         auth64 = headers["authorization"].split(" ");
         auth = Buffer.from(auth64[1], 'base64').toString();
         auth = auth.split(":");
-        console.log(auth[1]);
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
           ejs.renderFile(`${__dirname}/views/admin.ejs`, { title: "Admin" }, (err, str) => {
@@ -56,6 +54,8 @@ function handleRequest(req, res) {
       }
       break;
     case "/favicon-16x16.png" :
+      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+
       fs.readFile(`${__dirname}/public/favicon/favicon-16x16.png`, (err, favicon16) => {
         res.writeHead(200, {"Content-Type": "img/png"});
         res.write(favicon16);
@@ -63,6 +63,8 @@ function handleRequest(req, res) {
       });
       break;
     case "/favicon-32x32.png" :
+      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+
       fs.readFile(`${__dirname}/public/favicon/favicon-32x32.png`, (err, favicon32) => {
         res.writeHead(200, {"Content-Type": "img/png"});
         res.write(favicon32);
@@ -70,6 +72,8 @@ function handleRequest(req, res) {
       });
       break;
     case "/css/style.css" :
+      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+
       fs.readFile(`${__dirname}/public/css/style.css`, (err, cssFile) => {
         res.writeHead(200, {"Content-Type": "text/css"});
         res.write(cssFile);
