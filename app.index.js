@@ -49,6 +49,7 @@ function handleRequest(req, res) {
             res.end();
           });
         } else {
+          console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 401 `));
           res.statusCode = 401;
           res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
           res.end();
