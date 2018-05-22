@@ -43,7 +43,7 @@ function handleRequest(req, res) {
         auth = auth.split(":");
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
-          ejs.renderFile(`${__dirname}/views/admin.ejs`, { title: "Admin" }, (err, str) => {
+          ejs.renderFile(`${__dirname}/views/admin-basic-auth.ejs`, { title: "Admin" }, (err, str) => {
             res.writeHead(200, {"content-type": "text/html"});
             res.write(str);
             res.end();
