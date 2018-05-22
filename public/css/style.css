@@ -59,7 +59,12 @@ main div {
 }
 
 main h2, main h3 {
+  color: #0F0F0F;
   text-align: center
+}
+
+main hr {
+  border-color: #0F0F0F
 }
 
 .error404 {
