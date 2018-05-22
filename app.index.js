@@ -57,7 +57,7 @@ function handleRequest(req, res) {
         }
       }
       break;
-    case "/admin-basic-auth" :
+    case "/admin-disgest-auth" :
       break;
     case "/favicon-16x16.png" :
       console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
