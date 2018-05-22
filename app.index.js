@@ -31,10 +31,10 @@ function handleRequest(req, res) {
       });
       break;
 
-    case "/admin" :
+    case "/admin-basic-auth" :
       if (!headers["authorization"]) {
         res.statusCode = 401;
-        res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
+        res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
         res.end();
       } else {
         let auth, auth64, password;
@@ -52,10 +52,12 @@ function handleRequest(req, res) {
         } else {
           console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 401 `));
           res.statusCode = 401;
-          res.setHeader("WWW-Authenticate", "Basic realm='Admin Access', charset='UTF-8'");
+          res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
           res.end();
         }
       }
+      break;
+    case "/admin-basic-auth" :
       break;
     case "/favicon-16x16.png" :
       console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
