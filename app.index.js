@@ -25,7 +25,7 @@ function handleRequest(req, res) {
       console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
 
       ejs.renderFile(`${__dirname}/views/index.ejs`, { title: "Home" }, (err, str) => {
-        res.writeHead(200, {"content-type": "text/html"});
+        res.writeHead(200, {"content-type": "text/html; ; charset=utf-8"});
         res.write(str);
         res.end();
       });
@@ -45,7 +45,7 @@ function handleRequest(req, res) {
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
           ejs.renderFile(`${__dirname}/views/admin-basic-auth.ejs`, { title: "Admin" }, (err, str) => {
-            res.writeHead(200, {"content-type": "text/html"});
+            res.writeHead(200, {"content-type": "text/html; charset=utf-8"});
             res.write(str);
             res.end();
           });
@@ -81,7 +81,7 @@ function handleRequest(req, res) {
       console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
 
       fs.readFile(`${__dirname}/public/css/style.css`, (err, cssFile) => {
-        res.writeHead(200, {"Content-Type": "text/css"});
+        res.writeHead(200, {"Content-Type": "text/css; charset=utf-8"});
         res.write(cssFile);
         res.end();
       });

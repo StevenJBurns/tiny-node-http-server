@@ -28,7 +28,7 @@ nav ul {
 
 nav ul li {
   margin: 8px 0;
-  padding: 12px;
+  padding:  6px 12px;
   border-radius: 4px;
   background: #0000BB;
   display: inline-block;
@@ -37,6 +37,11 @@ nav ul li {
 a:link, a:visited {
   color: #F0F0F0;
   text-decoration: none;
+}
+
+a:hover, a:active {
+  color: #0000BB;
+  background: #F0F0F0
 }
 
 main {
