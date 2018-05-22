@@ -88,9 +88,12 @@ function handleRequest(req, res) {
       break;
     default :
       console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 404 `));
-      res.statusCode = 404;
-      res.write("Not Found");
-      res.end();
+
+      ejs.renderFile(`${__dirname}/views/error404.ejs`, { }, (err, page404) => {
+        res.writeHead(404, {"content-type": "text/html; charset=utf-8"});
+        res.write(page404);
+        res.end();
+      });
       break;
   }
 };
