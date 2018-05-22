@@ -17,6 +17,28 @@ header, footer {
   background: #BFBFBF;
 }
 
+nav {
+  text-align: center;
+  background: #DFDFDF;
+}
+
+nav ul {
+  list-style: none
+}
+
+nav ul li {
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: 4px;
+  background: #0000BB;
+  display: inline-block;
+}
+
+a:link, a:visited {
+  color: #F0F0F0;
+  text-decoration: none;
+}
+
 main {
   flex: 1 0 auto;
 }
