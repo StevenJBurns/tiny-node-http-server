@@ -40,7 +40,7 @@ function handleRequest(req, res) {
         let auth, auth64, password;
 
         auth64 = headers["authorization"].split(" ");
-        auth = Buffer.from(auth64[1], 'base64').toString();
+        auth = Buffer.from(auth64[1], 'base64').toString("utf-8");
         auth = auth.split(":");
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
