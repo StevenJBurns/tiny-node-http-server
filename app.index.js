@@ -3,6 +3,8 @@
 const fs = require("fs");
 const path = require("path");
 const http = require("http");
+const https = require("https");
+const crypto = require("crypto");
 const chalk = require("chalk");
 const ejs = require("ejs");
 
