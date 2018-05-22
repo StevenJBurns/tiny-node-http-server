@@ -9,6 +9,7 @@ const chalk = require("chalk");
 const ejs = require("ejs");
 
 const cities = require("./app.data");
+const pathPublic = `${__dirname}/public`;
 
 require('dotenv').config();
 
@@ -95,4 +96,6 @@ function handleRequest(req, res) {
 nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
+  console.log(chalk.inverse(` Public Folder : ${pathPublic} `));
+
 })
