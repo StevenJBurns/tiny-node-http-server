@@ -44,16 +44,21 @@ function handleRequest(req, res) {
         auth = auth.split(":");
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
-          ejs.renderFile(`${__dirname}/views/admin-basic-auth.ejs`, { title: "Admin" }, (err, str) => {
+          console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+
+          ejs.renderFile(`${__dirname}/views/admin-basic-auth.ejs`, {}, (err, str) => {
             res.writeHead(200, {"content-type": "text/html; charset=utf-8"});
             res.write(str);
             res.end();
           });
         } else {
           console.log(chalk.bgRed.black(` Outgoing Response -- STATUS: 401 `));
-          res.statusCode = 401;
-          res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
-          res.end();
+
+          ejs.renderFile(`${__dirname}/views/error401.ejs`, {}, (err, page401) => {
+            res.writeHead(401, {"content-type": "text/html; charset=utf-8"});
+            res.write(page401);
+            res.end();
+          });
         }
       }
       break;
