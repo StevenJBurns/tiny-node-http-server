@@ -55,7 +55,7 @@ main div {
   padding: 24px;
   border-radius: 8px;
   display: inline-block;
-  background: #FF4500
+  /* background: #FF4500 */
 }
 
 main h2, main h3 {
@@ -67,8 +67,12 @@ main hr {
   border-color: #0F0F0F
 }
 
+.authenticated {
+  background: #009900
+}
+
 .error404 {
-  background: #FF000077
+  background: #FF4500
 }
 
 .error401 {

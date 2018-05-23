@@ -102,5 +102,4 @@ nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
   console.log(chalk.bgBlackBright.white(` Public Folder : ${pathPublic} `));
-
 })
