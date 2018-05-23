@@ -50,7 +50,7 @@ function handleRequest(req, res) {
             res.end();
           });
         } else {
-          console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 401 `));
+          console.log(chalk.bgRed.black(` Outgoing Response -- STATUS: 401 `));
           res.statusCode = 401;
           res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
           res.end();
@@ -60,7 +60,7 @@ function handleRequest(req, res) {
     case "/admin-disgest-auth" :
       break;
     case "/favicon-16x16.png" :
-      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+      console.log(chalk.bgGreen.black(` Outgoing Response -- STATUS: 200 `));
 
       fs.readFile(`${__dirname}/public/favicon/favicon-16x16.png`, (err, favicon16) => {
         res.writeHead(200, {"Content-Type": "img/png"});
@@ -69,7 +69,7 @@ function handleRequest(req, res) {
       });
       break;
     case "/favicon-32x32.png" :
-      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+      console.log(chalk.bgGreen.black(` Outgoing Response -- STATUS: 200 `));
 
       fs.readFile(`${__dirname}/public/favicon/favicon-32x32.png`, (err, favicon32) => {
         res.writeHead(200, {"Content-Type": "img/png"});
@@ -78,7 +78,7 @@ function handleRequest(req, res) {
       });
       break;
     case "/css/style.css" :
-      console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+      console.log(chalk.bgGreen.black(` Outgoing Response -- STATUS: 200 `));
 
       fs.readFile(`${__dirname}/public/css/style.css`, (err, cssFile) => {
         res.writeHead(200, {"Content-Type": "text/css; charset=utf-8"});
@@ -87,7 +87,7 @@ function handleRequest(req, res) {
       });
       break;
     default :
-      console.log(chalk.bgRed.black(` Outgoing Request -- STATUS: 404 `));
+      console.log(chalk.bgYellow.black(` Outgoing Response -- STATUS: 404 `));
 
       ejs.renderFile(`${__dirname}/views/error404.ejs`, { }, (err, page404) => {
         res.writeHead(404, {"content-type": "text/html; charset=utf-8"});
@@ -101,6 +101,6 @@ function handleRequest(req, res) {
 nodeServer.listen(process.env.SERVER_PORT, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
-  console.log(chalk.inverse(` Public Folder : ${pathPublic} `));
+  console.log(chalk.bgBlackBright.white(` Public Folder : ${pathPublic} `));
 
 })
