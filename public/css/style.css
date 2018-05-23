@@ -76,9 +76,9 @@ main hr {
 }
 
 .error401 {
-
+  background: #8B0000
 }
 
 .error500 {
-  background: #FFFF0077;
+  background: #FFFF00;
 }
