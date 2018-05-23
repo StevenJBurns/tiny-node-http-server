@@ -33,9 +33,12 @@ function handleRequest(req, res) {
 
     case "/admin-basic-auth" :
       if (!headers["authorization"]) {
-        res.statusCode = 401;
-        res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
-        res.end();
+        ejs.renderFile(`${__dirname}/views/error401.ejs`, {}, (err, page401) => {
+          res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
+          res.writeHead(401, {"content-type": "text/html; charset=utf-8"});
+          res.write(page401);
+          res.end();
+        });
       } else {
         let auth, auth64, password;
 

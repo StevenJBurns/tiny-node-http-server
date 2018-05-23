@@ -11,9 +11,18 @@
   </head>
   <body>
     <%- include('header'); -%>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/admin-basic-auth">Try Again</a></li>
+      </ul>
+      </nav>
     <main>
-      <h3>Error 401</h3>
-      <a href="/admin-basic-auth/" >Try again</a>
+      <div class="error401">
+        <h2>Error 401</h2>
+        <hr>
+        <h3>Bad Authentication!</h3>
+      </div>
     </main>
     <%- include('footer'); -%>
   </body>
