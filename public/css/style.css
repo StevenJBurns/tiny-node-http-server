@@ -65,7 +65,8 @@ main h2, main h3 {
 }
 
 main hr {
-  border-color: #0F0F0F
+  margin: 8px 0;
+  border-color: #F0F0F0
 }
 
 .authenticated {
