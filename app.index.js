@@ -9,6 +9,7 @@ const chalk = require("chalk");
 const ejs = require("ejs");
 
 const cities = require("./app.data");
+const mimeTypes = require("./app.data.mimetypes");
 const pathPublic = `${__dirname}/public`;
 
 require('dotenv').config();
@@ -115,5 +116,8 @@ nodeServer.on("close", () => console.clear());
 nodeServer.listen(process.env.PORT_HTTP, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.PORT_HTTP} `));
-  console.log(chalk.bgBlackBright.white(` Public Folder : ${pathPublic} `));
+  for (let key in mimeTypes) {
+    console.log(chalk.bgBlackBright.white(` ${key} : ${mimeTypes[key]} `));
+  }
+  
 })
