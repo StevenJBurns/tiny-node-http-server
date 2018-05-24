@@ -45,6 +45,9 @@ function handleRequest(req, res) {
         auth64 = headers["authorization"].split(" ");
         auth = Buffer.from(auth64[1], 'base64').toString("utf-8");
         auth = auth.split(":");
+
+        let hashedPassword = crypto.createHash("md5").update(auth[1]).digest("hex");
+        console.log(hashedPassword);
         
         if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
           console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
@@ -58,6 +61,7 @@ function handleRequest(req, res) {
           console.log(chalk.bgRed.black(` Outgoing Response -- STATUS: 401 `));
 
           ejs.renderFile(`${__dirname}/views/error401.ejs`, {}, (err, page401) => {
+            res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
             res.writeHead(401, {"content-type": "text/html; charset=utf-8"});
             res.write(page401);
             res.end();
