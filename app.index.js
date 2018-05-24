@@ -108,8 +108,8 @@ function handleRequest(req, res) {
 
 nodeServer.on("close", () => console.clear());
 
-nodeServer.listen(process.env.SERVER_PORT, () => {
+nodeServer.listen(process.env.PORT_HTTP, () => {
   console.clear();
-  console.log(chalk.inverse(` Server running. Listening on port ${process.env.SERVER_PORT} `));
+  console.log(chalk.inverse(` Server running. Listening on port ${process.env.PORT_HTTP} `));
   console.log(chalk.bgBlackBright.white(` Public Folder : ${pathPublic} `));
 })
