@@ -16,6 +16,8 @@ require('dotenv').config();
 
 const nodeServer = http.createServer(handleRequest);
 
+nodeServer.on("close", () => console.clear());
+
 function handleRequest(req, res) {
   let { url, headers, method } = req;
 
@@ -111,13 +113,11 @@ function handleRequest(req, res) {
   }
 };
 
-nodeServer.on("close", () => console.clear());
-
 nodeServer.listen(process.env.PORT_HTTP, () => {
   console.clear();
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.PORT_HTTP} `));
+  
   for (let key in mimeTypes) {
     console.log(chalk.bgBlackBright.white(` ${key} : ${mimeTypes[key]} `));
   }
-  
 })
