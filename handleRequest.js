@@ -1,11 +1,18 @@
+//#region Node Dependencies
 const fs = require("fs");
 const crypto = require("crypto");
+//#endregion
 
+//#region External Dependencies
 const chalk = require("chalk");
 const ejs = require("ejs");
+//#endregion
 
-
+//#region Local Dependencies
 const pathPublic = `${__dirname}/public`;
+const pathViews = `${__dirname}/views`;
+//#endregion
+
 
 const handleRequest = (req, res) => {
   let { url, headers, method } = req;
@@ -16,7 +23,7 @@ const handleRequest = (req, res) => {
       case "/" :
         console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
   
-        ejs.renderFile(`${__dirname}/views/index.ejs`, { title: "Home" }, (err, str) => {
+        ejs.renderFile(`${pathViews}/index.ejs`, { title: "Home" }, (err, str) => {
           res.writeHead(200, {"content-type": "text/html; ; charset=utf-8"});
           res.write(str);
           res.end();
@@ -25,7 +32,7 @@ const handleRequest = (req, res) => {
   
       case "/admin-basic-auth" :
         if (!headers["authorization"]) {
-          ejs.renderFile(`${__dirname}/views/error401.ejs`, {}, (err, page401) => {
+          ejs.renderFile(`${pathViews}/error401.ejs`, {}, (err, page401) => {
             res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
             res.writeHead(401, {"content-type": "text/html; charset=utf-8"});
             res.write(page401);
@@ -44,7 +51,7 @@ const handleRequest = (req, res) => {
           if (auth[1] == process.env.BASIC_AUTH_PASSWORD) {
             console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
   
-            ejs.renderFile(`${__dirname}/views/admin-basic-auth.ejs`, {}, (err, str) => {
+            ejs.renderFile(`${pathViews}/admin-basic-auth.ejs`, {}, (err, str) => {
               res.writeHead(200, {"content-type": "text/html; charset=utf-8"});
               res.write(str);
               res.end();
@@ -52,7 +59,7 @@ const handleRequest = (req, res) => {
           } else {
             console.log(chalk.bgRed.black(` Outgoing Response -- STATUS: 401 `));
   
-            ejs.renderFile(`${__dirname}/views/error401.ejs`, {}, (err, page401) => {
+            ejs.renderFile(`${pathViews}/error401.ejs`, {}, (err, page401) => {
               res.setHeader("WWW-Authenticate", "Basic realm='Admin Logn via Basic Auth', charset='UTF-8'");
               res.writeHead(401, {"content-type": "text/html; charset=utf-8"});
               res.write(page401);
