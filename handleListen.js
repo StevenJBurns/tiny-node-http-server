@@ -9,6 +9,8 @@ const mimeTypes = require("./data/mimetypes");
 
 const handleListen = () => {
   console.clear();
+  // console.log("HTTP: ", process.env.PORT_HTTP);
+  // console.log("HTTPS: ", process.env.PORT_HTTPS);
   console.log(chalk.inverse(` Server running. Listening on port ${process.env.PORT_HTTP} `));
 };
 

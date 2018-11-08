@@ -21,7 +21,7 @@ const handleRequest = (req, res) => {
   
     switch (url) {
       case "/" :
-        console.log(chalk.bgGreen.black(` Outgoing Request -- STATUS: 200 `));
+        console.log(chalk.bgGreen.black(` Outgoing Response -- STATUS: 200 `));
   
         ejs.renderFile(`${pathViews}/index.ejs`, { title: "Home" }, (err, str) => {
           res.writeHead(200, {"content-type": "text/html; ; charset=utf-8"});
