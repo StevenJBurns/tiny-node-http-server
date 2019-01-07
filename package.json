@@ -17,7 +17,7 @@
     "url": "https://github.com/StevenJBurns/tiny-node-http-server/issues"
   },
   "dependencies": {
-    "chalk": "^2.4.1",
+    "chalk": "^2.4.2",
     "dotenv": "^6.2.0",
     "ejs": "^2.6.1"
   },
