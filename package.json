@@ -19,7 +19,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "dotenv": "^8.0.0",
-    "ejs": "^2.6.1"
+    "ejs": "^2.6.2"
   },
   "devDependencies": {},
   "homepage": "https://github.com/StevenJBurns/tiny-node-http-server#readme"
